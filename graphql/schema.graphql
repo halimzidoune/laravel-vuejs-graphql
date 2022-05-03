@@ -17,6 +17,15 @@ type Query {
       "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
       name: String @where(operator: "like")
     ): [User!]! @paginate(defaultCount: 10)
+
+    books: [Book] @all
+    book(id: ID @eq): Book @find
+    booksByFeatured(featured: Boolean @eq): [Book] @all
+    searchBook(search: String): [Book]
+
+
+    categories: [Category] @all
+    category(id: ID @eq): Category @find
 }
 
 "Account of a person who utilizes this application."
