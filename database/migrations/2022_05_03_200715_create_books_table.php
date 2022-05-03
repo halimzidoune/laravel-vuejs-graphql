@@ -15,6 +15,18 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('author');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
+            $table->string('link')->nullable();
+            $table->boolean('featured')->default(false);
+            
+            $table->foreignId('category_id')
+                    ->constrained()
+                    ->onUpdate('restrict')
+                    ->onDelete('restrict'); 
+
             $table->timestamps();
         });
     }
